@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CheerMeUp</string>
+    <string name="edit_message">Enter a Message</string>
+    <string name="cheerUp_header">Get ready to be cheered up!</string>
+    <string name="button_send">Send</string>
+    <string name="button_cheermeup">Cheer Me Up!</string>
+    <string name="button_change_image">Change Image</string>
+</resources>
+
