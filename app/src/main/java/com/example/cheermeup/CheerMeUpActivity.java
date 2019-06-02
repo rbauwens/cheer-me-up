@@ -22,8 +22,6 @@ public class CheerMeUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cheer_me_up);
 
-        // Capture the layout's TextView and set the string as it's text
-        TextView textView = findViewById(R.id.textView);
         this.lastResourceId = R.drawable.koala;
         addListenerOnButton();
     }
