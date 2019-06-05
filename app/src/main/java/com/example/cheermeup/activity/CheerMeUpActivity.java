@@ -1,4 +1,4 @@
-package com.example.cheermeup;
+package com.example.cheermeup.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.cheermeup.R;
 
 public class CheerMeUpActivity extends AppCompatActivity {
 
@@ -44,8 +46,4 @@ public class CheerMeUpActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
-
 }

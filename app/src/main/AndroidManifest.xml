@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activity.AboutUsActivity"></activity>
         <activity
-            android:name=".CheerMeUpActivity"
+            android:name=".activity.CheerMeUpActivity"
             android:parentActivityName=".activity.MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->

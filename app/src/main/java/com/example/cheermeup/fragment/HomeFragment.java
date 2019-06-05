@@ -1,22 +1,16 @@
 package com.example.cheermeup.fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import com.example.cheermeup.CheerMeUpActivity;
 import com.example.cheermeup.R;
-import com.example.cheermeup.activity.AboutUsActivity;
-import com.example.cheermeup.activity.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,8 +31,6 @@ public class HomeFragment extends Fragment{
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-
-    View view;
 
     public HomeFragment() {
         // Required empty public constructor
