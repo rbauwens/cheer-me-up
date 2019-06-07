@@ -10,8 +10,13 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="19dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="354dp"
-        tools:layout_editor_absoluteY="339dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Here is where you will do stuff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/activity_title_about_us" />
 </androidx.constraintlayout.widget.ConstraintLayout>

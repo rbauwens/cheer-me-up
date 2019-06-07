@@ -13,8 +13,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.cheermeup.R;
 import com.example.cheermeup.fragment.HomeFragment;
@@ -60,18 +58,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Navigation view header
 //        navHeader = navigationView.getHeaderView(0);
-//        TextView txtName = (TextView) navHeader.findViewById(R.id.name);
-//        TextView txtWebsite = (TextView) navHeader.findViewById(R.id.website);
-//        ImageView imgNavHeaderBg = (ImageView) navHeader.findViewById(R.id.img_header_bg);
-//        ImageView imgProfile = (ImageView) navHeader.findViewById(R.id.img_profile);
-
-        //load toolbar title
-        // toolbar titles
-//        String[] activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
-
 
         // initialize navigation menu
-        setUpNavigationView();
+        setupDrawerContent();
     }
 
     private ActionBarDrawerToggle setupDrawerToggle() {
@@ -87,14 +76,14 @@ public class MainActivity extends AppCompatActivity {
         drawerToggle.syncState();
     }
 
-//    @Override
-//    public void onConfigurationChanged(Configuration newConfig) {
-//        super.onConfigurationChanged(newConfig);
-//        // Pass any configuration change to the drawer toggles
-//        drawerToggle.onConfigurationChanged(newConfig);
-//    }
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Pass any configuration change to the drawer toggles
+        drawerToggle.onConfigurationChanged(newConfig);
+    }
 
-    private void setUpNavigationView() {
+    private void setupDrawerContent() {
 
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -121,11 +110,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.nav_settings:
                 fragmentClass = SettingsFragment.class;
                 break;
-//            case R.id.nav_about_us:
-//                // launch new intent instead of loading fragment
-//                startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
-//                drawer.closeDrawers();
-//                return true;
+            case R.id.nav_about_us:
+                // launch new intent instead of loading fragment
+                Intent intent = new Intent(this, AboutUsActivity.class);
+                startActivity(intent);
+                drawer.closeDrawers();
+                return;
             default:
                 fragmentClass = HomeFragment.class;
         }
@@ -136,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        // Insert the fragment by replacing any existing fragment
+//         Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
 
@@ -144,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         menuItem.setChecked(true);
         // Set action bar title
         setTitle(menuItem.getTitle());
-        // Close the navigation drawer
+//         Close the navigation drawer
         drawer.closeDrawers();
 
     }
