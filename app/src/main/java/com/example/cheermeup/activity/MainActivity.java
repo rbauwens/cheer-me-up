@@ -103,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Check to see which item was being clicked and perform appropriate action
         switch (menuItem.getItemId()) {
-            //Replacing the main content with ContentFragment Which is our Inbox View;
             case R.id.nav_home:
                 fragmentClass = HomeFragment.class;
                 break;
@@ -134,9 +133,8 @@ public class MainActivity extends AppCompatActivity {
         menuItem.setChecked(true);
         // Set action bar title
         setTitle(menuItem.getTitle());
-//         Close the navigation drawer
-        drawer.closeDrawers();
 
+        drawer.closeDrawers();
     }
 
     @Override
