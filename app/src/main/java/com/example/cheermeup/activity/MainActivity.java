@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.cheermeup.R;
+import com.example.cheermeup.fragment.CheerMeUpFragment;
 import com.example.cheermeup.fragment.HomeFragment;
 import com.example.cheermeup.fragment.SettingsFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -26,38 +27,25 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private ActionBarDrawerToggle drawerToggle;
 
-
-    // urls to load navigation header background image
-    // and profile image
-    private static final String urlNavHeaderBg = "https://api.androidhive.info/images/nav-menu-header-bg.jpg";
-    private static final String urlProfileImg = "https://lh3.googleusercontent.com/eCtE_G34M9ygdkmOpYvCag1vBARCmZwnVS6rS5t4JLzJ6QgQSBquM0nuTsCpLhYbKljoyS-txg";
-
-    // index to identify current nav menu item
-    public static int navItemIndex = 0;
-
-    // tags to attach the fragments
-    private static final String TAG_HOME = "home";
-    private static final String TAG_SETTINGS = "settings";
-    public static String CURRENT_TAG = TAG_HOME;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContent, new HomeFragment()).commit();
+        setTitle("Home");
+
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         drawerToggle = setupDrawerToggle();
         drawer.addDrawerListener(drawerToggle);
 
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
 //        View navHeader = navigationView.inflateHeaderView(R.layout.nav_header_main);
-
-        // Navigation view header
-//        navHeader = navigationView.getHeaderView(0);
 
         // initialize navigation menu
         setupDrawerContent();
@@ -160,6 +148,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CheerMeUpActivity.class);
         startActivity(intent);
     }
+
+    public void cheerMeUpFragment(View view) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContent, new CheerMeUpFragment()).commit();
+        setTitle("Cheer Me Up");
+    }
+
 
 }
 

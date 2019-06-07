@@ -28,26 +28,6 @@
             android:layout_height="match_parent" />
     </LinearLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
-            android:id="@+id/CheerMeUpButton"
-            android:layout_width="267dp"
-            android:layout_height="90dp"
-            android:onClick="cheerMeUp"
-            android:text="@string/button_cheermeup"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_conversion_wrapHeight="180"
-            tools:layout_conversion_wrapWidth="534" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
