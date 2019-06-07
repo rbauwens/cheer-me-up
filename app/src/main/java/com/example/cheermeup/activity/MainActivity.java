@@ -56,10 +56,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
-        View navHeader = navigationView.inflateHeaderView(R.layout.nav_header_main);
+//        View navHeader = navigationView.inflateHeaderView(R.layout.nav_header_main);
 
         // Navigation view header
-        navHeader = navigationView.getHeaderView(0);
+//        navHeader = navigationView.getHeaderView(0);
 //        TextView txtName = (TextView) navHeader.findViewById(R.id.name);
 //        TextView txtWebsite = (TextView) navHeader.findViewById(R.id.website);
 //        ImageView imgNavHeaderBg = (ImageView) navHeader.findViewById(R.id.img_header_bg);
@@ -87,12 +87,12 @@ public class MainActivity extends AppCompatActivity {
         drawerToggle.syncState();
     }
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        // Pass any configuration change to the drawer toggles
-        drawerToggle.onConfigurationChanged(newConfig);
-    }
+//    @Override
+//    public void onConfigurationChanged(Configuration newConfig) {
+//        super.onConfigurationChanged(newConfig);
+//        // Pass any configuration change to the drawer toggles
+//        drawerToggle.onConfigurationChanged(newConfig);
+//    }
 
     private void setUpNavigationView() {
 

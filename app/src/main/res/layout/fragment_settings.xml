@@ -10,4 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="418dp"
+        android:layout_height="241dp"
+        android:text="@string/nav_settings"
+        android:textSize="32sp"
+        tools:text="SETTINGS PAGE" />
+
 </FrameLayout>
