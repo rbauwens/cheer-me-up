@@ -30,8 +30,8 @@ public class SettingsRecyclerViewDataAdapter extends RecyclerView.Adapter<PhotoR
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View photoItemView = layoutInflater.inflate(R.layout.activity_card_view_item, parent, false);
 
-        final TextView photoTitleView = (TextView)photoItemView.findViewById(R.id.card_view_image_title);
-        final ImageView photoImageView = (ImageView)photoItemView.findViewById(R.id.card_view_image);
+        final TextView photoTitleView = photoItemView.findViewById(R.id.card_view_image_title);
+        final ImageView photoImageView = photoItemView.findViewById(R.id.card_view_image);
 
         // When click the image.
         photoItemView.setOnClickListener(new View.OnClickListener() {

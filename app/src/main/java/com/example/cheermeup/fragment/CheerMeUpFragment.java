@@ -1,5 +1,7 @@
 package com.example.cheermeup.fragment;
 
+import java.util.List;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,47 +11,44 @@ import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.example.cheermeup.R;
+import static com.example.cheermeup.fragment.SettingsFragment.photoItemList;
 
 public class CheerMeUpFragment extends Fragment {
-    Button changeImageButton;
-    ImageView imageView;
-    private int lastResourceId;
+    private ImageView imageView;
+    private int photoIndex;
 
-
-    // The onCreateView method is called when Fragment should create its View object hierarchy,
-    // either dynamically or via XML layout inflation. 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        // Defines the xml file for the fragment
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_cheer_me_up, parent, false);
     }
 
-    // This event is triggered soon after onCreateView().
-    // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        // Setup any handles to view objects here
-        // EditText etFoo = (EditText) view.findViewById(R.id.etFoo);
-        this.lastResourceId = R.drawable.koala;
+    public void onViewCreated(@NotNull View view, Bundle savedInstanceState) {
+
+        // Set initial image
+        imageView = view.findViewById(R.id.cheerMeUpImageView);
+        List<PhotoRecyclerViewItem> photoList = SettingsFragment.photoItemList;
+        int photoId = photoList.get(0).getPhotoImageId();
+        this.photoIndex = 0;
+        imageView.setImageResource(photoId);
+
         addListenerOnButton(view);
     }
 
-    public void addListenerOnButton(View view) {
-        imageView = (ImageView) view.findViewById(R.id.cheerMeUpImageView);
+    private void addListenerOnButton(View view) {
+        imageView = view.findViewById(R.id.cheerMeUpImageView);
 
-        changeImageButton = (Button) view.findViewById(R.id.changeImageButton);
+        Button changeImageButton = view.findViewById(R.id.changeImageButton);
         changeImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (lastResourceId == R.drawable.koala) {
-                    imageView.setImageResource(R.drawable.penguins);
-                    lastResourceId = R.drawable.penguins;
-                } else {
-                    imageView.setImageResource(R.drawable.koala);
-                    lastResourceId = R.drawable.koala;
-                }
+                List<PhotoRecyclerViewItem> photoList = SettingsFragment.photoItemList;
+                photoIndex = (photoIndex + 1) % photoItemList.size();
+                int photoId = photoList.get(photoIndex).getPhotoImageId();
+                imageView.setImageResource(photoId);
             }
         });
     }

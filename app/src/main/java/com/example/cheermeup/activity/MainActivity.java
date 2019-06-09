@@ -17,8 +17,13 @@ import android.view.View;
 import com.example.cheermeup.R;
 import com.example.cheermeup.fragment.CheerMeUpFragment;
 import com.example.cheermeup.fragment.HomeFragment;
+import com.example.cheermeup.fragment.PhotoRecyclerViewItem;
 import com.example.cheermeup.fragment.SettingsFragment;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
+
+import static com.example.cheermeup.fragment.SettingsFragment.photoItemList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,13 +47,18 @@ public class MainActivity extends AppCompatActivity {
         drawer = findViewById(R.id.drawer_layout);
         drawerToggle = setupDrawerToggle();
         drawer.addDrawerListener(drawerToggle);
-
-
         navigationView = findViewById(R.id.nav_view);
-//        View navHeader = navigationView.inflateHeaderView(R.layout.nav_header_main);
+
 
         // initialize navigation menu
         setupDrawerContent();
+
+        if (photoItemList == null) {
+            photoItemList = new ArrayList<>();
+
+            photoItemList.add(new PhotoRecyclerViewItem("koala", R.drawable.koala));
+            photoItemList.add(new PhotoRecyclerViewItem("penguins", R.drawable.penguins));
+        }
     }
 
     private ActionBarDrawerToggle setupDrawerToggle() {

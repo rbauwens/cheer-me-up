@@ -18,7 +18,7 @@ import java.util.List;
 
 public class SettingsFragment extends Fragment {
 
-    private List<PhotoRecyclerViewItem> photoItemList = null;
+    public static List<PhotoRecyclerViewItem> photoItemList = null;
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {

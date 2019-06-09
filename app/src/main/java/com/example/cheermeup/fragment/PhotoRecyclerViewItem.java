@@ -8,7 +8,7 @@ public class PhotoRecyclerViewItem {
     // Save image resource id.
     private int photoImageId;
 
-    PhotoRecyclerViewItem(String photoName, int photoImageId) {
+    public PhotoRecyclerViewItem(String photoName, int photoImageId) {
         this.photoName = photoName;
         this.photoImageId = photoImageId;
     }
