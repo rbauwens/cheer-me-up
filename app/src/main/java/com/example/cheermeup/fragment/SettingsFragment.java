@@ -3,26 +3,44 @@ import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
-
 import android.view.ViewGroup;
 import android.os.Bundle;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.cheermeup.R;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class SettingsFragment extends Fragment {
-    // The onCreateView method is called when Fragment should create its View object hierarchy,
-    // either dynamically or via XML layout inflation. 
+
+    private List<PhotoRecyclerViewItem> photoItemList = null;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        // Defines the xml file for the fragment
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_settings, parent, false);
     }
 
-    // This event is triggered soon after onCreateView().
-    // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        // Setup any handles to view objects here
-        // EditText etFoo = (EditText) view.findViewById(R.id.etFoo);
+    public void onViewCreated(@NotNull View view, Bundle savedInstanceState) {
+
+        RecyclerView settingsRecyclerView = view.findViewById(R.id.card_view_photo_list);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(view.getContext(), 4);
+        settingsRecyclerView.setLayoutManager(gridLayoutManager);
+
+        if (photoItemList == null) {
+            photoItemList = new ArrayList<>();
+
+            photoItemList.add(new PhotoRecyclerViewItem("koala", R.drawable.koala));
+            photoItemList.add(new PhotoRecyclerViewItem("penguins", R.drawable.penguins));
+        }
+
+        SettingsRecyclerViewDataAdapter settingsDataAdapter = new SettingsRecyclerViewDataAdapter(photoItemList);
+        settingsRecyclerView.setAdapter(settingsDataAdapter);
     }
 }

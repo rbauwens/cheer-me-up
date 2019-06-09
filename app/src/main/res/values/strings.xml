@@ -10,6 +10,9 @@
     <string name="openDrawer">open_drawer</string>
     <string name="closeDrawer">close_drawer</string>
 
+    <!-- Settings Page labels -->
+    <string name="photo_settings_header">View and Edit your Cheer Me Up Photos</string>
+
     <!-- Navigation Drawer menu labels -->
     <string name="nav_home">Home</string>
     <string name="nav_settings">Settings</string>
