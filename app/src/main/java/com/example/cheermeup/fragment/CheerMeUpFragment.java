@@ -22,7 +22,7 @@ public class CheerMeUpFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         // Defines the xml file for the fragment
-        return inflater.inflate(R.layout.activity_cheer_me_up, parent, false);
+        return inflater.inflate(R.layout.fragment_cheer_me_up, parent, false);
     }
 
     // This event is triggered soon after onCreateView().

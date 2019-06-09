@@ -12,6 +12,7 @@
         android:onClick="cheerMeUpFragment"
         android:text="@string/button_cheermeup"
         android:textSize="36sp"
+        android:background="@drawable/button_circle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

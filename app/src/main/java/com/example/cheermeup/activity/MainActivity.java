@@ -144,11 +144,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void cheerMeUp(View view) {
-        Intent intent = new Intent(this, CheerMeUpActivity.class);
-        startActivity(intent);
-    }
-
     public void cheerMeUpFragment(View view) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.flContent, new CheerMeUpFragment()).commit();

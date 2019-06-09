@@ -11,11 +11,7 @@
         android:roundIcon="@mipmap/cmu_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.AboutUsActivity"></activity>
-        <activity
-            android:name=".activity.CheerMeUpActivity"
-            android:parentActivityName=".activity.MainActivity">
-
+        <activity android:name=".activity.AboutUsActivity">
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
