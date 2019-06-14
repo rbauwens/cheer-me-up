@@ -99,12 +99,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.nav_settings:
                 fragmentClass = SettingsFragment.class;
                 break;
-            case R.id.nav_about_us:
-                // launch new intent instead of loading fragment
-                Intent intent = new Intent(this, AboutUsActivity.class);
-                startActivity(intent);
-                drawer.closeDrawers();
-                return;
             default:
                 fragmentClass = HomeFragment.class;
         }

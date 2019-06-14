@@ -41,8 +41,6 @@ public class SettingsFragment extends Fragment {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(view.getContext(), 4);
         settingsRecyclerView.setLayoutManager(gridLayoutManager);
 
-//        MainActivity.photoList.initialiseList();
-
         SettingsRecyclerViewDataAdapter settingsDataAdapter = new SettingsRecyclerViewDataAdapter(PhotoList.getPhotoList());
         settingsRecyclerView.setAdapter(settingsDataAdapter);
     }
