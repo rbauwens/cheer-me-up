@@ -11,15 +11,12 @@ import android.widget.Button;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import com.example.cheermeup.R;
 import com.example.cheermeup.activity.SelectPhotoActivity;
 import com.example.cheermeup.photos.PhotoList;
 
 public class SettingsFragment extends Fragment {
-
-    public SettingsRecyclerViewDataAdapter settingsDataAdapter;
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -38,25 +35,13 @@ public class SettingsFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NotNull View view, @Nullable Bundle savedInstanceState) {
-
-        super.onViewCreated(view, savedInstanceState);
-        if (settingsDataAdapter != null) {
-            settingsDataAdapter.notifyDataSetChanged();
-        }
+    public void onViewCreated(@NotNull View view, Bundle savedInstanceState) {
 
         RecyclerView settingsRecyclerView = view.findViewById(R.id.card_view_photo_list);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(view.getContext(), 4);
         settingsRecyclerView.setLayoutManager(gridLayoutManager);
 
-        settingsDataAdapter = new SettingsRecyclerViewDataAdapter(PhotoList.getPhotoList());
+        SettingsRecyclerViewDataAdapter settingsDataAdapter = new SettingsRecyclerViewDataAdapter(PhotoList.getPhotoList());
         settingsRecyclerView.setAdapter(settingsDataAdapter);
     }
-
-    public String getTitle() {
-        return getString(R.string.nav_settings);
-    }
-
-
-
 }

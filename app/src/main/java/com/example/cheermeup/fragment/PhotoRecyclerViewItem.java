@@ -25,10 +25,6 @@ public class PhotoRecyclerViewItem {
         return photoName;
     }
 
-    public void setPhotoName(String photoName) {
-        this.photoName = photoName;
-    }
-
     int getPhotoImageId() {
         return photoImageId;
     }
@@ -36,9 +32,4 @@ public class PhotoRecyclerViewItem {
     String getPhotoFilePath() {
         return photoFilePath;
     }
-
-    public void setPhotoImageId(int photoImageId) {
-        this.photoImageId = photoImageId;
-    }
-
 }
