@@ -10,18 +10,13 @@ import android.widget.Button;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import org.jetbrains.annotations.NotNull;
 
 import com.example.cheermeup.R;
 import com.example.cheermeup.activity.SelectPhotoActivity;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.cheermeup.photos.PhotoList;
 
 public class SettingsFragment extends Fragment {
-
-    public static List<PhotoRecyclerViewItem> photoItemList = null;
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -46,14 +41,9 @@ public class SettingsFragment extends Fragment {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(view.getContext(), 4);
         settingsRecyclerView.setLayoutManager(gridLayoutManager);
 
-        if (photoItemList == null) {
-            photoItemList = new ArrayList<>();
+//        MainActivity.photoList.initialiseList();
 
-            photoItemList.add(new PhotoRecyclerViewItem("koala", R.drawable.koala));
-            photoItemList.add(new PhotoRecyclerViewItem("penguins", R.drawable.penguins));
-        }
-
-        SettingsRecyclerViewDataAdapter settingsDataAdapter = new SettingsRecyclerViewDataAdapter(photoItemList);
+        SettingsRecyclerViewDataAdapter settingsDataAdapter = new SettingsRecyclerViewDataAdapter(PhotoList.getPhotoList());
         settingsRecyclerView.setAdapter(settingsDataAdapter);
     }
 

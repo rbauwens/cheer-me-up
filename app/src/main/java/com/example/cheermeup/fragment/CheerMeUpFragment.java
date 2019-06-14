@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import org.jetbrains.annotations.NotNull;
 
 import com.example.cheermeup.R;
-import static com.example.cheermeup.fragment.SettingsFragment.photoItemList;
+import com.example.cheermeup.photos.PhotoList;
 
 public class CheerMeUpFragment extends Fragment {
     private ImageView imageView;
@@ -30,7 +30,7 @@ public class CheerMeUpFragment extends Fragment {
 
         // Set initial image
         imageView = view.findViewById(R.id.cheerMeUpImageView);
-        List<PhotoRecyclerViewItem> photoList = SettingsFragment.photoItemList;
+        List<PhotoRecyclerViewItem> photoList = PhotoList.getPhotoList();
         int photoId = photoList.get(0).getPhotoImageId();
         this.photoIndex = 0;
         imageView.setImageResource(photoId);
@@ -45,8 +45,8 @@ public class CheerMeUpFragment extends Fragment {
         changeImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<PhotoRecyclerViewItem> photoList = SettingsFragment.photoItemList;
-                photoIndex = (photoIndex + 1) % photoItemList.size();
+                List<PhotoRecyclerViewItem> photoList = PhotoList.getPhotoList();
+                photoIndex = (photoIndex + 1) % PhotoList.getPhotoList().size();
                 int photoId = photoList.get(photoIndex).getPhotoImageId();
                 imageView.setImageResource(photoId);
             }
