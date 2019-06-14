@@ -8,9 +8,17 @@ public class PhotoRecyclerViewItem {
     // Save image resource id.
     private int photoImageId;
 
+    private String photoFilePath;
+
     public PhotoRecyclerViewItem(String photoName, int photoImageId) {
         this.photoName = photoName;
         this.photoImageId = photoImageId;
+    }
+
+    public PhotoRecyclerViewItem(String photoName, String filePath) {
+        this.photoName = photoName;
+        this.photoImageId = 0;
+        this.photoFilePath = filePath;
     }
 
     String getPhotoName() {
@@ -23,6 +31,10 @@ public class PhotoRecyclerViewItem {
 
     int getPhotoImageId() {
         return photoImageId;
+    }
+
+    String getPhotoFilePath() {
+        return photoFilePath;
     }
 
     public void setPhotoImageId(int photoImageId) {

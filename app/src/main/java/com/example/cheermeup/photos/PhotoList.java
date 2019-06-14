@@ -14,11 +14,7 @@ public class PhotoList{
         return photoList;
     }
 
-    public void setPhotoList(List<PhotoRecyclerViewItem> photoList) {
-        this.photoList = photoList;
-    }
-
-    public void initialiseList() {
+    public static void initialiseList() {
         if (photoList == null) {
             photoList = new ArrayList<>();
 
@@ -27,5 +23,12 @@ public class PhotoList{
         }
     }
 
+    public static void clearList() {
+        photoList = null;
+    }
+
+    public static void addPhoto(PhotoRecyclerViewItem photo) {
+        photoList.add(photo);
+    }
 
 }

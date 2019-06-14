@@ -1,7 +1,9 @@
 package com.example.cheermeup.fragment;
 
+import java.io.File;
 import java.util.List;
 
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,8 +49,19 @@ public class CheerMeUpFragment extends Fragment {
             public void onClick(View v) {
                 List<PhotoRecyclerViewItem> photoList = PhotoList.getPhotoList();
                 photoIndex = (photoIndex + 1) % PhotoList.getPhotoList().size();
-                int photoId = photoList.get(photoIndex).getPhotoImageId();
-                imageView.setImageResource(photoId);
+
+                PhotoRecyclerViewItem photo = photoList.get(photoIndex);
+
+                int photoId = photo.getPhotoImageId();
+                if (photoId == 0) {
+                    String filePath = photo.getPhotoFilePath();
+                    File imageFile = new File(filePath);
+                    if (imageFile.exists()) {
+                        imageView.setImageBitmap(BitmapFactory.decodeFile(filePath));
+                    }
+                } else {
+                    imageView.setImageResource(photoId);
+                }
             }
         });
     }

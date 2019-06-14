@@ -33,9 +33,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.flContent, new HomeFragment()).commit();
-        setTitle("Home");
+        int intentFragment = R.id.nav_home;
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            intentFragment = extras.getInt("fragmentToLoad");
+        }
+        loadFragment(intentFragment);
+
+
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -49,8 +54,37 @@ public class MainActivity extends AppCompatActivity {
         // initialize navigation menu
         setupDrawerContent();
 
-        PhotoList photoList = new PhotoList();
-        photoList.initialiseList();
+        PhotoList.initialiseList();
+    }
+
+    private void loadFragment(int fragment) {
+        Class fragmentClass;
+        String title;
+        Fragment fragmentToLoad = null;
+
+        switch (fragment) {
+            case R.id.nav_home:
+                title = getString(R.string.nav_home);
+                fragmentClass = HomeFragment.class;
+                break;
+            case R.id.nav_settings:
+                title = getString(R.string.nav_settings);
+                fragmentClass = SettingsFragment.class;
+                break;
+            default:
+                title = getString(R.string.nav_home);
+                fragmentClass = HomeFragment.class;
+        }
+
+        try {
+            fragmentToLoad = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContent, fragmentToLoad).commit();
+        setTitle(title);
     }
 
     private ActionBarDrawerToggle setupDrawerToggle() {

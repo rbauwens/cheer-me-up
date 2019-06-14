@@ -1,5 +1,9 @@
 package com.example.cheermeup.fragment;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +17,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
 import java.util.List;
 
 public class SettingsRecyclerViewDataAdapter extends RecyclerView.Adapter<PhotoRecyclerViewItemHolder> {
@@ -57,7 +62,16 @@ public class SettingsRecyclerViewDataAdapter extends RecyclerView.Adapter<PhotoR
                 // Set item title.
                 holder.getPhotoTitleText().setText(photoItem.getPhotoName());
                 // Set image resource id.
-                holder.getPhotoImageView().setImageResource(photoItem.getPhotoImageId());
+
+                if (photoItem.getPhotoImageId() != 0) {
+                    holder.getPhotoImageView().setImageResource(photoItem.getPhotoImageId());
+                } else if (photoItem.getPhotoFilePath() != null) {
+                    File imageFile = new File(photoItem.getPhotoFilePath());
+                    if (imageFile.exists()) {
+                        holder.getPhotoImageView().setImageBitmap(BitmapFactory.decodeFile(photoItem.getPhotoFilePath()));
+                    }
+                }
+
             }
         }
     }
