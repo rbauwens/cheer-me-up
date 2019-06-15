@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,14 +31,13 @@ public class SettingsRecyclerViewDataAdapter extends RecyclerView.Adapter<PhotoR
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View photoItemView = layoutInflater.inflate(R.layout.activity_card_view_item, parent, false);
 
-        final TextView photoTitleView = photoItemView.findViewById(R.id.card_view_image_title);
         final ImageView photoImageView = photoItemView.findViewById(R.id.card_view_image);
 
         // When click the image.
         photoItemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String photoTitle = photoTitleView.getText().toString();
+                String photoTitle = photoImageView.getTag().toString();
                 // Create a snackbar and show it.
                 Snackbar snackbar = Snackbar.make(photoImageView, "You clicked " + photoTitle +" image", Snackbar.LENGTH_LONG);
                 snackbar.show();
@@ -49,17 +47,21 @@ public class SettingsRecyclerViewDataAdapter extends RecyclerView.Adapter<PhotoR
         // Create and return our custom Car Recycler View Item Holder object.
         return new PhotoRecyclerViewItemHolder(photoItemView);
     }
+
+    /**
+     * Display each photo
+     */
     @Override
     public void onBindViewHolder(@NotNull PhotoRecyclerViewItemHolder holder, int position) {
         if(photoList!=null) {
-            // Get item dto in list.
+            // Get item in list.
             PhotoRecyclerViewItem photoItem = photoList.get(position);
 
             if(photoItem != null) {
-                // Set item title.
-                holder.getPhotoTitleText().setText(photoItem.getPhotoName());
-                // Set image resource id.
+                // Set item title as a tag of the imageView so we can get it later
+                holder.getPhotoImageView().setTag(photoItem.getPhotoName());
 
+                // Set image resource id or file path if in local storage.
                 if (photoItem.getPhotoImageId() != 0) {
                     holder.getPhotoImageView().setImageResource(photoItem.getPhotoImageId());
                 } else if (photoItem.getPhotoFilePath() != null) {
@@ -68,7 +70,6 @@ public class SettingsRecyclerViewDataAdapter extends RecyclerView.Adapter<PhotoR
                         holder.getPhotoImageView().setImageBitmap(BitmapFactory.decodeFile(photoItem.getPhotoFilePath()));
                     }
                 }
-
             }
         }
     }

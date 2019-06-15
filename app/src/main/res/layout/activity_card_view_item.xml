@@ -17,17 +17,6 @@
             android:layout_height="150dp"
             android:scaleType="centerCrop"/>
 
-        <TextView
-            android:id="@+id/card_view_image_title"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:textColor="#ED0C0C0C"
-            app:fontFamily="sans-serif-medium"
-            android:layout_gravity="center_horizontal"
-            android:textSize="20sp"/>
-
-
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
