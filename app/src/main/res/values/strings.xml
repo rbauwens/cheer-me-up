@@ -13,6 +13,7 @@
     <!-- Settings Page labels -->
     <string name="photo_settings_header">View and Edit your Cheer Me Up Photos</string>
     <string name="add_photos">Add photos from device</string>
+    <string name="take_photos">Add photos from camera</string>
     <string name="select_photos">Click done to add these photos</string>
     <string name="done">Done</string>
 

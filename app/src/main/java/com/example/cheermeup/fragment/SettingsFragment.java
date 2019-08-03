@@ -1,7 +1,9 @@
 package com.example.cheermeup.fragment;
 import androidx.fragment.app.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import org.jetbrains.annotations.NotNull;
 
 import com.example.cheermeup.R;
 import com.example.cheermeup.activity.SelectPhotoActivity;
+import com.example.cheermeup.activity.TakePhotoActivity;
 import com.example.cheermeup.photos.PhotoList;
 
 public class SettingsFragment extends Fragment {
@@ -31,6 +34,25 @@ public class SettingsFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        Button takePhotoButton = inputView.findViewById(R.id.take_photos_button);
+
+        Context context = getContext();
+        if (context != null) {
+            PackageManager pm = getContext().getPackageManager();
+            if (!pm.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
+                takePhotoButton.setVisibility(View.INVISIBLE);
+            }
+        }
+
+        takePhotoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(inputView.getContext(), TakePhotoActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return inputView;
     }
 
