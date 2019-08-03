@@ -28,18 +28,35 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawer;
     private Toolbar toolbar;
     private ActionBarDrawerToggle drawerToggle;
+    private Fragment savedFragment;
+
+    @Override
+    protected void onSaveInstanceState(@NotNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        getSupportFragmentManager().putFragment(outState, "myFragmentName", savedFragment);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        savedFragment = null;
+
+        if (savedInstanceState != null) {
+            savedFragment = getSupportFragmentManager().getFragment(savedInstanceState, "myFragmentName");
+        }
+
         setContentView(R.layout.activity_main);
 
-        int intentFragment = R.id.nav_home;
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            intentFragment = extras.getInt("fragmentToLoad");
+        if (savedFragment != null) {
+            loadFragment(savedFragment);
+        } else {
+            int intentFragment = R.id.nav_home;
+            Bundle extras = getIntent().getExtras();
+            if (extras != null) {
+                intentFragment = extras.getInt("fragmentToLoad");
+            }
+            loadFragment(intentFragment);
         }
-        loadFragment(intentFragment);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -53,6 +70,12 @@ public class MainActivity extends AppCompatActivity {
         setupDrawerContent();
 
         PhotoList.initialiseList();
+    }
+
+    private void loadFragment(Fragment fragmentToLoad) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContent, fragmentToLoad).commit();
+        savedFragment = fragmentToLoad;
     }
 
     private void loadFragment(int fragment) {
@@ -81,8 +104,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (fragmentToLoad != null) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.flContent, fragmentToLoad).commit();
+            loadFragment(fragmentToLoad);
             setTitle(title);
         }
 
@@ -148,8 +170,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void cheerMeUpFragment(View view) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.flContent, new CheerMeUpFragment()).commit();
+        loadFragment(new CheerMeUpFragment());
         setTitle("Cheer Me Up");
     }
 

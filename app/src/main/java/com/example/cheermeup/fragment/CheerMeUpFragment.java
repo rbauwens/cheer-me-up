@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
@@ -23,18 +22,33 @@ public class CheerMeUpFragment extends Fragment {
     private int photoIndex;
 
     @Override
+    public void onSaveInstanceState(@NotNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("currentPhoto", photoIndex);
+    }
+
+    @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_cheer_me_up, parent, false);
     }
 
     @Override
     public void onViewCreated(@NotNull View view, Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         // Set initial image
         imageView = view.findViewById(R.id.cheerMeUpImageView);
         List<PhotoRecyclerViewItem> photoList = PhotoList.getPhotoList();
-        int photoId = photoList.get(0).getPhotoImageId();
-        this.photoIndex = 0;
+
+        int photoId;
+        if (savedInstanceState != null) {
+            //use currentPhotoId
+            this.photoIndex = savedInstanceState.getInt("currentPhoto");
+            photoId = photoList.get(this.photoIndex).getPhotoImageId();
+        } else {
+            photoId = photoList.get(0).getPhotoImageId();
+            this.photoIndex = 0;
+        }
         imageView.setImageResource(photoId);
 
         addListenerOnButton(view);
@@ -42,9 +56,7 @@ public class CheerMeUpFragment extends Fragment {
 
     private void addListenerOnButton(View view) {
         imageView = view.findViewById(R.id.cheerMeUpImageView);
-
-        Button changeImageButton = view.findViewById(R.id.changeImageButton);
-        changeImageButton.setOnClickListener(new View.OnClickListener() {
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 List<PhotoRecyclerViewItem> photoList = PhotoList.getPhotoList();
