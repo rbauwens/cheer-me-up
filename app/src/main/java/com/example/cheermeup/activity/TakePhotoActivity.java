@@ -20,6 +20,7 @@ import com.example.cheermeup.fragment.PhotoRecyclerViewItem;
 import com.example.cheermeup.photos.PhotoList;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -48,7 +49,7 @@ public class TakePhotoActivity extends AppCompatActivity {
             try {
                 photoFile = createImageFile();
             } catch (IOException ex) {
-                // TODO do something
+                System.out.println(ex.getMessage());
             }
             if (photoFile != null) {
                 Uri photoURI = FileProvider.getUriForFile(this,
@@ -100,6 +101,15 @@ public class TakePhotoActivity extends AppCompatActivity {
         Uri contectUri = Uri.fromFile(file);
         mediaScanIntent.setData(contectUri);
         this.sendBroadcast(mediaScanIntent);
+
+        try {
+            MediaStore.Images.Media.insertImage(this.getContentResolver(),
+                    file.getAbsolutePath(), file.getName(), null);
+            this.sendBroadcast(new Intent(
+                    Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }
 
