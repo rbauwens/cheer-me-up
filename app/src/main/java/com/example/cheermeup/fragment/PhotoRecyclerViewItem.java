@@ -21,15 +21,15 @@ public class PhotoRecyclerViewItem {
         this.photoFilePath = filePath;
     }
 
-    String getPhotoName() {
+    public String getPhotoName() {
         return photoName;
     }
 
-    int getPhotoImageId() {
+    public int getPhotoImageId() {
         return photoImageId;
     }
 
-    String getPhotoFilePath() {
+    public String getPhotoFilePath() {
         return photoFilePath;
     }
 }

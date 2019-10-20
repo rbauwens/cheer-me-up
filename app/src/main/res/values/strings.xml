@@ -33,6 +33,7 @@
     <string name="action_clear_all">Clear All</string>
     <string name="action_logout">Logout</string>
     <string name="action_mark_all_read">Mark All as Read</string>
+    <string name="reset_photo_list">Reset photo list</string>
 
 
 </resources>

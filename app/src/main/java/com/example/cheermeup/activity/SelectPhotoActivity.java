@@ -64,7 +64,7 @@ public class SelectPhotoActivity extends AppCompatActivity {
             if (photoUri != null) {
                 String imageName = get_image_name(photoUri);
                 String filePath = get_file_path(photoUri);
-                PhotoList.addPhoto(new PhotoRecyclerViewItem(imageName, filePath));
+                PhotoList.addPhoto(this.getApplicationContext(), new PhotoRecyclerViewItem(imageName, filePath));
             }
         }
         super.onActivityResult(requestCode, resultCode, data);

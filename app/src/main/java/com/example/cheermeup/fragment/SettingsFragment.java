@@ -26,6 +26,14 @@ public class SettingsFragment extends Fragment {
 
         final View inputView =  inflater.inflate(R.layout.fragment_settings, parent, false);
 
+        Button resetPhotosButton = inputView.findViewById(R.id.reset_photos_button);
+        resetPhotosButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PhotoList.clearList(inputView.getContext());
+            }
+        });
+
         Button selectPhotoButton = inputView.findViewById(R.id.add_photos_button);
         selectPhotoButton.setOnClickListener(new View.OnClickListener() {
             @Override

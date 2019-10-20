@@ -69,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
         // initialize navigation menu
         setupDrawerContent();
 
-        PhotoList.initialiseList();
+        PhotoList.initialiseList(this.getApplicationContext());
+
     }
 
     private void loadFragment(Fragment fragmentToLoad) {

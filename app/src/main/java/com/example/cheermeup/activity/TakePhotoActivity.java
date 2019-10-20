@@ -74,7 +74,7 @@ public class TakePhotoActivity extends AppCompatActivity {
             if (photoUri != null) {
                 String imageName = file.getName();
                 String filePath = file.getAbsolutePath();
-                PhotoList.addPhoto(new PhotoRecyclerViewItem(imageName, filePath));
+                PhotoList.addPhoto(this.getApplicationContext(), new PhotoRecyclerViewItem(imageName, filePath));
             }
         }
 

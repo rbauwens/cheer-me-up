@@ -37,4 +37,8 @@ dependencies {
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.0.0'
     // Glide image library
     implementation 'com.github.bumptech.glide:glide:3.7.0'
+    // for saving the list as json
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    testImplementation 'org.mockito:mockito-core:2.7.22'
 }
