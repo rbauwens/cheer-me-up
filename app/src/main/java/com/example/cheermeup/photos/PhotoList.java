@@ -7,6 +7,8 @@ import com.example.cheermeup.fragment.PhotoRecyclerViewItem;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -34,27 +36,16 @@ public class PhotoList {
             System.out.println("FILE EXISTS");
             // file exists so we should try and read from it
             Gson gson = new Gson();
-            String jsonInput = null;
+            String json = null;
             try {
-                FileInputStream fileInputStream = context.openFileInput(FILENAME);
-                BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream));
-
-                StringBuilder sb = new StringBuilder();
-                String line = reader.readLine();
-
-                while (line != null) {
-                    sb.append(line);
-                    line = reader.readLine();
-                }
-                jsonInput = sb.toString();
-                System.out.println("Reading from file: " + jsonInput);
+                json = readFromFile(context);
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
             Type listType = new TypeToken<List<PhotoRecyclerViewItem>>() {}.getType();
-            photoList = gson.fromJson(jsonInput, listType);
+            photoList = gson.fromJson(json, listType);
 
         } else {
             System.out.println("FILE DOES NOT EXIST");
@@ -82,25 +73,15 @@ public class PhotoList {
 
     private static void savePhoto(Context context, PhotoRecyclerViewItem photo){
         Gson gson = new Gson();
-        String jsonInput;
+        String json;
         List<PhotoRecyclerViewItem> currentList;
 
         // Read in existing file
         try {
 
-            FileInputStream fileInputStream = context.openFileInput(FILENAME);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream));
-            StringBuilder sb = new StringBuilder();
-            String line = reader.readLine();
-
-            while (line != null) {
-                sb.append(line);
-                line = reader.readLine();
-            }
-            jsonInput = sb.toString();
-            System.out.println("Reading from file: " + jsonInput);
+            json = readFromFile(context);
             Type listType = new TypeToken<List<PhotoRecyclerViewItem>>() {}.getType();
-            currentList = gson.fromJson(jsonInput, listType);
+            currentList = gson.fromJson(json, listType);
 
             currentList.add(photo);
 
@@ -119,9 +100,23 @@ public class PhotoList {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    @NotNull
+    private static String readFromFile(Context context) throws IOException {
+        String jsonInput;
+        FileInputStream fileInputStream = context.openFileInput(FILENAME);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream));
+        StringBuilder sb = new StringBuilder();
+        String line = reader.readLine();
 
-
+        while (line != null) {
+            sb.append(line);
+            line = reader.readLine();
+        }
+        jsonInput = sb.toString();
+        System.out.println("Reading from file: " + jsonInput);
+        return jsonInput;
     }
 
     public static void addPhoto(Context context, PhotoRecyclerViewItem photo) {
